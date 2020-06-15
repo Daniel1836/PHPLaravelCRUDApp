@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 
-class CreatesController extends Controller {
+class CreatesController extends Controller 
+
+{
     
-    public function home() {
+    public function home()
+    
+    {
         $articles = Article::all();
         return view('welcome', ['articles'=>$articles]);
     }
     
-    public function add(Request $request){
+    public function add(Request $request)
+    
+    {
        $this->validate($request, [
            'title'=> 'required',
            'description'=> 'required'
@@ -24,12 +30,16 @@ class CreatesController extends Controller {
            return redirect('/welcome.php')->with('info','Article Saved Successfully!');
     }
     
-    public function update($id){
+    public function update($id)
+    
+    {
        $articles = Article::find($id);
         return view('update', ['articles'=>$articles]);
     }
     
-    public function edit(Request $request, $id){
+    public function edit(Request $request, $id)
+    
+    {
           $this->validate($request, [
            'title'=> 'required',
            'description'=> 'required'
@@ -43,12 +53,16 @@ class CreatesController extends Controller {
            return redirect('/welcome.php')->with('info','Article Updated Successfully!');
     }
     
-    public function read($id) {
+    public function read($id)
+    
+    {
         $articles = Article::find($id);
         return view('read', ['articles'=>$articles]);
     }
     
-    public function delete($id){
+    public function delete($id)
+    
+    {
         Article::where('id',$id)
         ->delete();
           return redirect('/welcome.php')->with('info','Article Deleted Successfully!');
@@ -56,4 +70,3 @@ class CreatesController extends Controller {
 }
 
 
-?>
