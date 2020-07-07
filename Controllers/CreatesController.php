@@ -8,6 +8,10 @@ use App\Article;
 class CreatesController extends Controller 
 
 {
+  
+        /*
+    Display the home view with article data
+    */
     
     public function home()
     
@@ -15,6 +19,10 @@ class CreatesController extends Controller
         $articles = Article::all();
         return view('welcome', ['articles'=>$articles]);
     }
+    
+       /*
+    Store a newly created resource in storage
+    */
     
     public function add(Request $request)
     
@@ -30,12 +38,20 @@ class CreatesController extends Controller
            return redirect('/welcome.php')->with('info','Article Saved Successfully!');
     }
     
+          /*
+  Show the update view with article data
+    */
+    
     public function update($id)
     
     {
        $articles = Article::find($id);
         return view('update', ['articles'=>$articles]);
     }
+    
+          /*
+   Update the article
+    */
     
     public function edit(Request $request, $id)
     
@@ -53,12 +69,20 @@ class CreatesController extends Controller
            return redirect('/welcome.php')->with('info','Article Updated Successfully!');
     }
     
+        /*
+    Display a listing of the resource
+    */
+    
     public function read($id)
     
     {
         $articles = Article::find($id);
         return view('read', ['articles'=>$articles]);
     }
+    
+          /*
+   Delete the article
+    */
     
     public function delete($id)
     
